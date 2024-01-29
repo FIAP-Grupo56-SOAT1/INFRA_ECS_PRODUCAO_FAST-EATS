@@ -37,23 +37,14 @@ resource "aws_ecs_task_definition" "FASTEATS-API" {
         "cpu"    = 1024
         "memory" = 2048
         "environment" = [
-          {
-            "NAME" : "DB_HOST",
-            "value" : "${var.containerDbServer}"
-          },
+          { "NAME" : "DB_HOST", "value" : "${var.containerDbServer}" },
           { "NAME" : "DB_PORT", "value" : "${var.containerDbPort}" },
           { "NAME" : "DB_NAME", "value" : "${var.containerDbName}" },
           { "NAME" : "DB_USERNAME", "value" : "${var.containerDbUser}" },
           { "NAME" : "DB_PASSWORD", "value" : "${var.containerDbPassword}" },
           { "NAME" : "DB_ROOT_PASSWORD", "value" : "${var.containerDbRootPassword}" },
-          {
-            "NAME" : "URL_PEDIDO_SERVICE",
-            "value" : "${var.url_pedido_service}"
-          },
-          {
-            "NAME" : "URL_COZINHA_PEDIDO_SERVICE",
-            "value" : "${var.url_cozinha_pedido_service}"
-          },
+          { "NAME" : "URL_PEDIDO_SERVICE", "value" : "${var.url_pedido_service}" },
+          { "NAME" : "URL_COZINHA_PEDIDO_SERVICE", "value" : "${var.url_cozinha_pedido_service}" },
           { "NAME" : "APP_PORT", "value" : "${var.portaAplicacao}" }
         ]
         "essential" = true
