@@ -36,8 +36,8 @@ resource "aws_ecs_task_definition" "FASTEATS-API" {
         "image"  = var.imagemDocker
         "cpu"    = 1024
         "memory" = 2048
-        "environment" = [
-          { "NAME" : "APP_PORT", "value" : "${var.APP_PORT}" }          
+        "environment" = [                  
+          { "NAME" : "APP_PORT", "value" : "8082" }
         ]
         "essential" = true
         "portMappings" = [
