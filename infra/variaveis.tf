@@ -62,11 +62,11 @@ variable "containerDbRootPassword" {
   type = string
 }
 
-variable "URL_PEDIDO_SERVICE" {
+variable "url_pedido_service" {
   type    = string  
 }
 
-variable "URL_COZINHA_PEDIDO_SERVICE" {
+variable "url_cozinha_pedido_service" {
   type    = string  
 }
 
