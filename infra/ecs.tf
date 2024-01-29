@@ -37,29 +37,8 @@ resource "aws_ecs_task_definition" "FASTEATS-API" {
         "cpu"    = 1024
         "memory" = 2048
         "environment" = [
-          {
-            "NAME" : "DB_SERVER",
-            "value" : "${var.containerDbServer}"
-          },
-          { "NAME" : "DB_PORT", "value" : "${var.containerDbPort}" },
-          { "NAME" : "DB_NAME", "value" : "${var.containerDbName}" },
-          { "NAME" : "DB_USER", "value" : "${var.containerDbUser}" },
-          { "NAME" : "DB_PASSWORD", "value" : "${var.containerDbPassword}" },
-          { "NAME" : "DB_ROOT_PASSWORD", "value" : "${var.containerDbRootPassword}" },
-          {
-            "NAME" : "MERCADO_PAGO_EMAIL_EMPRESA",
-            "value" : "${var.containerMercadoPagoEmailEmpresa}"
-          },
-          {
-            "NAME" : "MERCADO_PAGO_CREDENCIAL",
-            "value" : "${var.containerMercadoPagoCredential}"
-          },
-          { "NAME" : "MERCADO_PAGO_USERID", "value" : "${var.containerMercadoPagoUderId}" },
-          { "NAME" : "MERCADO_PAGO_TIPO_cozinha", "value" : "${var.containerMercadoPagoTipocozinha}" },
-          { "NAME" : "URL_PEDIDO_SERVICE", "value" : "${var.URL_PEDIDO_SERVICE}" },
-          { "NAME" : "URL_COZINHA_PEDIDO_SERVICE", "value" : "${var.URL_COZINHA_PEDIDO_SERVICE}" },
-          { "NAME" : "APP_PORT", "value" : "8080" }
-        ]
+          { "NAME" : "APP_PORT", "value" : "${var.APP_PORT}" },
+          ]
         "essential" = true
         "portMappings" = [
           {

@@ -37,60 +37,39 @@ variable "imagemDocker" {
   default = "fiap56soat1/fasteats-ms-producao-api:latest"
 }
 
-variable "containerDbServer" {
-  type = string
+
+
+/*MONGO DB */
+
+
+variable "APP_PORT" {
+  type    = number
 }
 
-variable "containerDbPort" {
+variable "DB_USERNAME" {
   type    = string
-  default = "3306"
 }
 
-variable "containerDbName" {
-  type = string
-}
-
-variable "containerDbUser" {
-  type = string
-}
-
-variable "containerDbPassword" {
-  type = string
-}
-
-variable "containerDbRootPassword" {
-  type = string
-}
-
-variable "containerMercadoPagoEmailEmpresa" {
+variable "DB_PASSWORD" {
   type    = string
-  default = "cozinha@lanchonete-fiap.com.br"
 }
 
-
-variable "containerMercadoPagoCredential" {
+variable "DB_NAME" {
   type    = string
-  default = "TEST-2087963774082813-080820-ee2b9b80edbdecf3ea8453bb8c088bc7-64946408"
 }
 
-
-variable "containerMercadoPagoUderId" {
-  type    = string
-  default = "64946408"
+variable "DB_PORT" {
+  type    = number
 }
 
-variable "containerMercadoPagoTipocozinha" {
+variable "DB_HOST" {
   type    = string
-  default = "pix"
 }
 
 variable "URL_PEDIDO_SERVICE" {
   type    = string
-  default = "http://localhost:8082"
 }
 
-variable "URL_COZINHA_PEDIDO_SERVICE" {
+variable "URL_PAGAMENTO_SERVICE" {
   type    = string
-  default = "http://localhost:8083"
 }
-
