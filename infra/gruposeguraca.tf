@@ -1,5 +1,5 @@
 resource "aws_security_group" "alb" {
-  name   = "alb_ECS-cozinha"
+  name   = "alb_ECS"
   vpc_id = module.vpc.vpc_id
 }
 
@@ -26,7 +26,7 @@ resource "aws_security_group_rule" "saida_alb" {
 #CONFIGURAÇÃO DA REDE PRIVADA PARA O ECS
 
 resource "aws_security_group" "privado" {
-  name   = "privado_ECS-cozinha"
+  name   = "privado_ECS"
   vpc_id = module.vpc.vpc_id
 }
 
@@ -56,8 +56,8 @@ resource "aws_security_group" "rds_sg" {
 
   ingress {
     protocol        = "tcp"
-    from_port       = 27017
-    to_port         = 27017
+    from_port       = 3306
+    to_port         = 3306
     cidr_blocks     = ["0.0.0.0/0"]
     security_groups = [aws_security_group.alb.id]
   }
