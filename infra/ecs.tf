@@ -21,7 +21,8 @@ module "ecs" {
   }
 }
 
-resource "aws_ecs_task_definition" "FASTEATS-API-COZINHA" {
+
+resource "aws_ecs_task_definition" "FASTEATS-API" {
   family                   = "FASTEATS-TASK"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
@@ -45,24 +46,35 @@ resource "aws_ecs_task_definition" "FASTEATS-API-COZINHA" {
           { "NAME" : "DB_USER", "value" : "${var.containerDbUser}" },
           { "NAME" : "DB_PASSWORD", "value" : "${var.containerDbPassword}" },
           { "NAME" : "DB_ROOT_PASSWORD", "value" : "${var.containerDbRootPassword}" },
+          {
+            "NAME" : "MERCADO_PAGO_EMAIL_EMPRESA",
+            "value" : "${var.containerMercadoPagoEmailEmpresa}"
+          },
+          {
+            "NAME" : "MERCADO_PAGO_CREDENCIAL",
+            "value" : "${var.containerMercadoPagoCredential}"
+          },
+          { "NAME" : "MERCADO_PAGO_USERID", "value" : "${var.containerMercadoPagoUderId}" },
+          { "NAME" : "MERCADO_PAGO_TIPO_cozinha", "value" : "${var.containerMercadoPagoTipocozinha}" },
+          { "NAME" : "URL_PEDIDO_SERVICE", "value" : "${var.URL_PEDIDO_SERVICE}" },
+          { "NAME" : "URL_COZINHA_PEDIDO_SERVICE", "value" : "${var.URL_COZINHA_PEDIDO_SERVICE}" },
           { "NAME" : "APP_PORT", "value" : "8080" }
-        ],
-        "essential" = true,
+        ]
+        "essential" = true
         "portMappings" = [
           {
-            "containerPort" = var.containerPort,
-            "hostPort"      = var.portaAplicacao
+            "containerPort" = "${var.containerPort}"
+            "hostPort"      = "${var.portaAplicacao}"
           }
         ]
       }
-    ]
-  )
+  ])
 }
 
-resource "aws_ecs_service" "FASTEATS-API-COZINHA" {
+resource "aws_ecs_service" "FASTEATS-API" {
   name            = "FASTEATS-API"
   cluster         = module.ecs.cluster_id
-  task_definition = aws_ecs_task_definition.FASTEATS-API-COZINHA.arn
+  task_definition = aws_ecs_task_definition.FASTEATS-API.arn
   desired_count   = 1
 
   load_balancer {

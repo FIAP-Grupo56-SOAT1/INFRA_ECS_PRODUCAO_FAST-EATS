@@ -27,11 +27,6 @@ variable "containerPort" {
   default = 8080
 }
 
-variable "containerDbPort" {
-  type    = number
-  default = 27017
-}
-
 variable "containerName" {
   type    = string
   default = "fasteats-api-cozinha"
@@ -44,6 +39,11 @@ variable "imagemDocker" {
 
 variable "containerDbServer" {
   type = string
+}
+
+variable "containerDbPort" {
+  type    = string
+  default = "3306"
 }
 
 variable "containerDbName" {
@@ -62,11 +62,35 @@ variable "containerDbRootPassword" {
   type = string
 }
 
-variable "url_pedido_service" {
-  type    = string  
+variable "containerMercadoPagoEmailEmpresa" {
+  type    = string
+  default = "cozinha@lanchonete-fiap.com.br"
 }
 
-variable "url_cozinha_pedido_service" {
-  type    = string  
+
+variable "containerMercadoPagoCredential" {
+  type    = string
+  default = "TEST-2087963774082813-080820-ee2b9b80edbdecf3ea8453bb8c088bc7-64946408"
+}
+
+
+variable "containerMercadoPagoUderId" {
+  type    = string
+  default = "64946408"
+}
+
+variable "containerMercadoPagoTipocozinha" {
+  type    = string
+  default = "pix"
+}
+
+variable "URL_PEDIDO_SERVICE" {
+  type    = string
+  default = "http://localhost:8082"
+}
+
+variable "URL_COZINHA_PEDIDO_SERVICE" {
+  type    = string
+  default = "http://localhost:8083"
 }
 
