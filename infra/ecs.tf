@@ -36,15 +36,16 @@ resource "aws_ecs_task_definition" "FASTEATS-API" {
         "cpu"    = 1024
         "memory" = 2048
         "environment" = [
-          { "name" : "DB_HOST", "value" : var.containerDbServer },
-          { "name" : "DB_PORT", "value" : var.containerDbPort },
-          { "name" : "DB_NAME", "value" : var.containerDbName },
-          { "name" : "DB_USERNAME", "value" : var.containerDbUser },
-          { "name" : "DB_PASSWORD", "value" : var.containerDbPassword },
-          { "name" : "DB_ROOT_PASSWORD", "value" : var.containerDbRootPassword },
-          { "name" : "URL_PEDIDO_SERVICE", "value" : var.url_pedido_service },
-          { "name" : "URL_COZINHA_PEDIDO_SERVICE", "value" : var.url_cozinha_pedido_service },
-          { "name" : "APP_PORT", "value" : var.portaAplicacao }
+          {
+            "NAME" : "DB_SERVER",
+            "value" : "${var.containerDbServer}"
+          },
+          { "NAME" : "DB_PORT", "value" : "${var.containerDbPort}" },
+          { "NAME" : "DB_NAME", "value" : "${var.containerDbName}" },
+          { "NAME" : "DB_USER", "value" : "${var.containerDbUser}" },
+          { "NAME" : "DB_PASSWORD", "value" : "${var.containerDbPassword}" },
+          { "NAME" : "DB_ROOT_PASSWORD", "value" : "${var.containerDbRootPassword}" },
+          { "NAME" : "APP_PORT", "value" : "8080" }
         ],
         "essential" = true,
         "portMappings" = [
