@@ -3,7 +3,7 @@
 terraform {
   backend "s3" {
     bucket = "bucket-fiap-soat1-grupo56-remote-state"
-    key    = "fasteats-aplicacao-cozinha/terraform.tfstate"
+    key    = "fasteats-aplicacao-producao/terraform.tfstate"
     region = "us-east-1"
   }
 }
