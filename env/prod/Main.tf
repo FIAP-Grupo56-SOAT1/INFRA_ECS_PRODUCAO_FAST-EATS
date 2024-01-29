@@ -8,8 +8,8 @@ module "prod" {
   containerDbUser            = jsondecode(data.aws_secretsmanager_secret_version.mysql_credentials.secret_string)["containerDbUser"]
   containerDbPassword        = jsondecode(data.aws_secretsmanager_secret_version.mysql_credentials.secret_string)["containerDbPassword"]
   containerDbRootPassword    = jsondecode(data.aws_secretsmanager_secret_version.mysql_credentials.secret_string)["containerDbRootPassword"]
-  URL_PEDIDO_SERVICE         = jsondecode(data.aws_secretsmanager_secret_version.mysql_credentials.secret_string)["URL_PEDIDO_SERVICE"]
-  URL_COZINHA_PEDIDO_SERVICE = jsondecode(data.aws_secretsmanager_secret_version.mysql_credentials.secret_string)["URL_COZINHA_PEDIDO_SERVICE"]
+  url_pedido_service         = jsondecode(data.aws_secretsmanager_secret_version.mysql_credentials.secret_string)["URL_PEDIDO_SERVICE"]
+  url_cozinha_pedido_service = jsondecode(data.aws_secretsmanager_secret_version.mysql_credentials.secret_string)["URL_COZINHA_PEDIDO_SERVICE"]
 }
 
 
