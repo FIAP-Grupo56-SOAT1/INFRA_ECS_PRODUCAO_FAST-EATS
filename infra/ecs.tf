@@ -21,7 +21,7 @@ module "ecs" {
   }
 }
 
-resource "aws_ecs_task_definition" "FASTEATS-API" {
+resource "aws_ecs_task_definition" "FASTEATS-API-COZINHA" {
   family                   = "FASTEATS-TASK"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
@@ -59,10 +59,10 @@ resource "aws_ecs_task_definition" "FASTEATS-API" {
   )
 }
 
-resource "aws_ecs_service" "FASTEATS-API" {
+resource "aws_ecs_service" "FASTEATS-API-COZINHA" {
   name            = "FASTEATS-API"
   cluster         = module.ecs.cluster_id
-  task_definition = aws_ecs_task_definition.FASTEATS-API.arn
+  task_definition = aws_ecs_task_definition.FASTEATS-API-COZINHA.arn
   desired_count   = 1
 
   load_balancer {
