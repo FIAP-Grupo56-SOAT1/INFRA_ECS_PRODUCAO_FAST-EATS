@@ -36,7 +36,7 @@ resource "aws_ecs_task_definition" "FASTEATS-API" {
         "image"  = var.imagemDocker
         "cpu"    = 1024
         "memory" = 2048
-       "environment" = [
+        "environment" = [
           {
             "NAME" : "DB_HOST",
             "value" : "${var.containerDbServer}"
@@ -53,7 +53,7 @@ resource "aws_ecs_task_definition" "FASTEATS-API" {
           {
             "NAME" : "URL_COZINHA_PEDIDO_SERVICE",
             "value" : "${var.url_cozinha_pedido_service}"
-          },                                  
+          },
           { "NAME" : "APP_PORT", "value" : "${var.portaAplicacao}" }
         ]
         "essential" = true
