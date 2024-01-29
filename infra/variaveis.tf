@@ -1,15 +1,15 @@
 variable "nome_repositorio" {
   type    = string
-  default = "repositorio-terraform-api-cozinha"
+  default = "repositorio-terraform-api-producao"
 }
 variable "cargoIam" {
   type    = string
-  default = "fasteats-api-ms-cozinha"
+  default = "fasteats-api-ms-producao"
 }
 
 variable "perfil" {
   type    = string
-  default = "fasteats-api-ms-cozinha"
+  default = "fasteats-api-ms-producao"
 }
 
 variable "portaAplicacao" {
