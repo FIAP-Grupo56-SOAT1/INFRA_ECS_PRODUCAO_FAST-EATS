@@ -37,7 +37,14 @@ resource "aws_ecs_task_definition" "FASTEATS-API" {
         "cpu"    = 1024
         "memory" = 2048
         "environment" = [                  
-          { "NAME" : "APP_PORT", "value" : "8082" }
+          { "NAME" : "APP_PORT", "value" : "8082" },
+          { "NAME" : "DB_USERNAME", "value" : "fiap56" },
+          { "NAME" : "DB_PASSWORD", "value" : "fiapsoat1grupo56" },
+          { "NAME" : "DB_NAME", "value" : "fasteatsproducaodb" },
+          { "NAME" : "DB_PORT", "value" : "27017" },
+          { "NAME" : "DB_HOST", "value" : "54.163.63.60" },
+          { "NAME" : "URL_PEDIDO_SERVICE", "value" : "http://ecs-fasteats-919425977.us-east-1.elb.amazonaws.com:8080" },
+          { "NAME" : "URL_PAGAMENTO_SERVICE", "value" : "http://ecs-fasteats-api-pagamento-399390289.us-west-2.elb.amazonaws.com:8080" }
         ]
         "essential" = true
         "portMappings" = [
