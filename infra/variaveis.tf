@@ -14,7 +14,7 @@ variable "perfil" {
 
 variable "portaAplicacao" {
   type    = number
-  default = 8080
+  default = 8082
 }
 
 variable "ambiente" {
