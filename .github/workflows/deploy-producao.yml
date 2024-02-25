@@ -1,14 +1,17 @@
-name: 'Terraform'
+name: 'deploy producao'
 
 on:
-  workflow_call:
+  pull_request:
+    branches: ['main']
+    types: ['closed']
 
 permissions:
   contents: read
 
 jobs:
   terraform:
-    name: 'Terraform'
+    if: github.event.pull_request.merged == true
+    name: 'Deploy Producao'
     runs-on: ubuntu-latest
 
     defaults:
@@ -22,21 +25,22 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: us-east-2
+          aws-region: us-east-1
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v3.0.0
 
       - name: Terraform Init
         run: |
           cd ./env/prod/
-          terraform init
+          terraform init -reconfigure
 
       - name: Terraform Plan
         run: |
-          cd ./env/prod/
+          cd ./env/prod/ 
           terraform plan -input=false
 
       - name: Terraform Apply
