@@ -19,7 +19,6 @@ data "aws_ecr_repository" "repositorio" {
 ######### Configuring AWS ECS Task Definitions ########
 resource "aws_ecs_task_definition" "fasteats" {
   family = "task-${var.micro_servico}" # Name your task
-  track_latest = true
   container_definitions = jsonencode(
     [
       {
