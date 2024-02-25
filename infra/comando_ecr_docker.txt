@@ -1,0 +1,33 @@
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 730335661438.dkr.ecr.us-east-1.amazonaws.com
+
+#login no ECR AWS
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 730335661438.dkr.ecr.us-east-1.amazonaws.com
+
+
+#construir o imagem/container no diretorio onde tem o Dockerfile
+docker build -t microservico-cozinha .
+
+-------------------------------
+#TAG
+#fornecer uma tag à imagem que você usará
+docker tag microservico-cozinha:latest 730335661438.dkr.ecr.us-east-1.amazonaws.com/microservico-cozinha:latest
+
+#pedido
+docker tag microservico-pedido:latest 730335661438.dkr.ecr.us-east-1.amazonaws.com/microservico-pedido:latest
+
+#pagamento
+docker tag microservico-pagamento:latest 730335661438.dkr.ecr.us-east-1.amazonaws.com/microservico-pagamento:latest
+
+
+----------------------------------
+#PUSH
+#docker push para enviar e publicar a imagem no repositório ECR
+
+#pedido
+docker push 730335661438.dkr.ecr.us-east-1.amazonaws.com/microservico-pedido:latest
+
+#cozinha
+docker push 730335661438.dkr.ecr.us-east-1.amazonaws.com/microservico-cozinha:latest
+
+#pagamento
+docker push 730335661438.dkr.ecr.us-east-1.amazonaws.com/microservico-pagamento:latest
