@@ -15,6 +15,12 @@ data "aws_ecr_repository" "repositorio" {
   name = var.nome_repositorio
 }
 
+resource "random_string" "lower" {
+  length  = 16
+  upper   = false
+  lower   = true
+  special = false
+}
 
 ######### Configuring AWS ECS Task Definitions ########
 resource "aws_ecs_task_definition" "fasteats" {
@@ -58,6 +64,11 @@ resource "aws_ecs_task_definition" "fasteats" {
   memory                   = var.memory_container                     # Specify the memory the container requires
   cpu                      = var.cpu_container                        # Specify the CPU the container requires
   execution_role_arn       = var.execution_role_ecs                   #aws_iam_role.ecsTaskExecutionRole.arn
+
+  #tags = {
+  #  Name = random_string.lower.result
+  #  type = "terraform"
+  #}
 }
 
 

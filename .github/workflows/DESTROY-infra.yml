@@ -39,8 +39,5 @@ jobs:
           cd ./env/prod/
           terraform init -reconfigure     
 
-      - name: Terraform Plan
-        run: terraform plan -input=false
-
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
