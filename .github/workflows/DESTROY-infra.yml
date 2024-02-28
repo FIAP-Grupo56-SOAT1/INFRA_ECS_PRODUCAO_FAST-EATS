@@ -37,10 +37,14 @@ jobs:
       - name: Terraform Init
         run: |
           cd ./env/prod/
-          terraform init -reconfigure     
+          terraform init -reconfigure
 
       - name: Terraform Plan
-        run: terraform plan -input=false
+        run: |
+          cd ./env/prod/ 
+          terraform plan -input=false
 
-      - name: Terraform Destroy
-        run: terraform destroy -auto-approve
+      - name: Terraform Apply
+        run: |
+          cd ./env/prod/
+          terraform destroy -auto-approve
