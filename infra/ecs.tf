@@ -45,6 +45,7 @@ resource "aws_ecs_task_definition" "fasteats" {
           { "NAME" : "AWS_SECRET_KEY", "value" : var.secret_key },
           { "NAME" : "AWS_SESSION_TOKEN", "value" : var.session_token },
           { "NAME" : "AWS_REGION", "value" : var.regiao },
+          { "NAME" : "AWS_SQS_ENDPOINT", "value" : "https://sqs.us-east-1.amazonaws.com/730335661438" },
           { "NAME" : "AWS_SQS_QUEUE_PEDIDO_RECEBIDO", "value" : "pedido-recebido" },
           { "NAME" : "AWS_SQS_QUEUE_PEDIDO_EM_PREPARO", "value" : "pedido-em-preparo" },
           { "NAME" : "AWS_SQS_QUEUE_PEDIDO_PRONTO", "value" : "pedido-pronto" },
