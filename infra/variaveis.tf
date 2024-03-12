@@ -11,7 +11,7 @@ variable "nome_repositorio" {
 
 variable "portaAplicacao" {
   type    = number
-  default = 8082
+  default = 8080
 }
 
 variable "imagemDocker" {
@@ -94,4 +94,15 @@ variable "container_insights" {
   type        = bool
   default     = false
   description = "Set to true to enable container insights on the cluster"
+}
+
+variable "access_key" {
+  type    = string
+}
+
+variable "secret_key" {
+  type    = string
+}
+variable "session_token" {
+  type    = string
 }

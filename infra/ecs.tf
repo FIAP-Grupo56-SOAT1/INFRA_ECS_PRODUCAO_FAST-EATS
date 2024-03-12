@@ -40,7 +40,21 @@ resource "aws_ecs_task_definition" "fasteats" {
           { "NAME" : "DB_NAME", "value" : var.containerDbName },
           { "NAME" : "DB_HOST", "value" : var.containerDbServer },
           { "NAME" : "URL_PAGAMENTO_SERVICE", "value" : var.url_pagamento_service },
-          { "NAME" : "URL_PEDIDO_SERVICE", "value" : var.url_pedido_service }
+          { "NAME" : "URL_PEDIDO_SERVICE", "value" : var.url_pedido_service },
+          { "NAME" : "AWS_ACCESS_KEY", "value" : var.access_key },
+          { "NAME" : "AWS_SECRET_KEY", "value" : var.secret_key },
+          { "NAME" : "AWS_SESSION_TOKEN", "value" : var.session_token },
+          { "NAME" : "AWS_REGION", "value" : var.regiao },
+          { "NAME" : "AWS_SQS_QUEUE_PEDIDO_RECEBIDO", "value" : "pedido-recebido" },
+          { "NAME" : "AWS_SQS_QUEUE_PEDIDO_EM_PREPARO", "value" : "pedido-em-preparo" },
+          { "NAME" : "AWS_SQS_QUEUE_PEDIDO_PRONTO", "value" : "pedido-pronto" },
+          { "NAME" : "AWS_SQS_QUEUE_PEDIDO_FINALIZADO", "value" : "pedido-finalizado" },
+          { "NAME" : "AWS_SQS_QUEUE_COZINHA_RECEBER_PEDIDO", "value" : "cozinha-receber-pedido" },
+          { "NAME" : "AWS_SQS_QUEUE_COZINHA_ERRO_RECEBER_PEDIDO", "value" : "cozinha-erro-receber-pedido" },
+          { "NAME" : "AWS_SQS_QUEUE_COZINHA_ERRO_PEDIDO_RECEBIDO", "value" : "cozinha-erro-pedido-recebido" },
+          { "NAME" : "AWS_SQS_QUEUE_COZINHA_ERRO_PEDIDO_EM_PREPARO", "value" : "cozinha-erro-pedido-em-preparo" },
+          { "NAME" : "AWS_SQS_QUEUE_COZINHA_ERRO_PEDIDO_PRONTO", "value" : "cozinha-erro-pedido-pronto" },
+          { "NAME" : "AWS_SQS_QUEUE_COZINHA_ERRO_PEDIDO_FINALIZADO", "value" : "cozinha-erro-pedido-finalizado" }
         ]
         essential = true
         portMappings = [
@@ -136,9 +150,9 @@ resource "aws_lb_target_group" "target_group_fasteats" {
     path = "/actuator/health"
     port = var.portaAplicacao
     healthy_threshold = 5
-    unhealthy_threshold = 2
+    unhealthy_threshold = 3
     timeout = 5
-    interval = 30
+    interval =60
     matcher = "200"  # has to be HTTP 200 or fails
   }
 }
