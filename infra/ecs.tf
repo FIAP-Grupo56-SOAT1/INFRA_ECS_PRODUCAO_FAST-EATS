@@ -103,10 +103,10 @@ resource "aws_default_subnet" "default_subnet_b" {
   availability_zone = "us-east-1b"
 }
 
-resource "aws_default_subnet" "default_subnet_c" {
-  # Use your own region here but reference to subnet 1b
-  availability_zone = "us-east-1c"
-}
+#resource "aws_default_subnet" "default_subnet_c" {
+#  # Use your own region here but reference to subnet 1b
+#  availability_zone = "us-east-1c"
+#}
 
 
 ##### Implement a Load Balancer #####
@@ -116,7 +116,7 @@ resource "aws_alb" "application_load_balancer_fasteats" {
   subnets = [ # Referencing the default subnets
     aws_default_subnet.default_subnet_a.id,
     aws_default_subnet.default_subnet_b.id,
-    aws_default_subnet.default_subnet_c.id
+    #aws_default_subnet.default_subnet_c.id
   ]
   # security group
   security_groups = [aws_security_group.load_balancer_security_group_fasteats.id]
@@ -179,7 +179,7 @@ resource "aws_ecs_service" "app_service_fasteats" {
   desired_count   = 1 # Set up the number of containers to 3
   force_new_deployment = true
   triggers = {
-    redeployment = timestamp()
+    redeployment = random_string.lower.result
   }
   load_balancer {
     target_group_arn = aws_lb_target_group.target_group_fasteats.arn # Reference the target group
@@ -191,7 +191,7 @@ resource "aws_ecs_service" "app_service_fasteats" {
     subnets = [
       aws_default_subnet.default_subnet_a.id,
       aws_default_subnet.default_subnet_b.id,
-      aws_default_subnet.default_subnet_c.id
+      #aws_default_subnet.default_subnet_c.id
     ]
     assign_public_ip = true                                                  # Provide the containers with public IPs
     security_groups  = [
